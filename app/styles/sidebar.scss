@@ -1,0 +1,205 @@
+$gm-grey--50:  #FAFAFA;
+$gm-grey--100: #F5F5F5;
+$gm-grey--200: #EEEEEE;
+$gm-grey--300: #E0E0E0;
+$gm-grey--400: #BDBDBD;
+$gm-grey--500: #9E9E9E;
+$gm-grey--600: #757575;
+$gm-grey--700: #616161;
+$gm-grey--800: #424242;
+$gm-grey--900: #212121;
+
+$gm-black: #000000;
+$gm-white: #FFFFFF;
+
+$sidebar__width: 280px;
+$sidebar__collapsed-width: 56px;
+$sidebar__icon-width: 56px;
+
+$sidebar__border-color: transparent;
+$sidebar__tether-width: 280px;
+$sidebar__line-height: 60px;
+$sidebar__cell-height: 60px;
+$sidebar__shadow-tether: inset 1px 1px 1px rgba(0,0,0,0.24), inset 1px -1px 1px rgba(0,0,0,0.02);
+
+$regular__font-size: 14px;
+$regular__font-weight: 300;
+
+$sidebar__offset--top: 56px;
+$sidebar__width: 280px;
+$sidebar__width--collapsed: 56px;
+
+$sidebar__shadow: 2px 0 4px rgba(0,0,0,.16), 2px 0 4px rgba(0,0,0,.23);
+
+
+ul {
+	padding: 0px;
+}
+
+%sidebar__default {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	text-transform: none;
+	font-size: $regular__font-size;
+	font-family: 'Roboto', sans-serif;
+	box-shadow: $sidebar__shadow;
+	-webkit-box-shadow: $sidebar__shadow;
+	-webkit-transition: width 0.3s;
+	transition: width 0.3s;
+	z-index: 70;
+}
+
+.sidebar {
+    display: flex;
+    flex-shrink: 0;
+    height: 100vh;
+    background-color: $primary__color;
+    @include shadow($shadow__level--2);
+	@extend %sidebar__default;
+	flex-shrink: 0;
+	width: $sidebar__width;
+		&:after {
+			display: table;
+			clear: both;
+			content: '';
+		}
+		&--collapsed {
+			@extend %sidebar__default;
+			width: $sidebar__width--collapsed;
+		}
+		&__nav {
+			height: 100%;
+			bottom: 0;
+			overflow: hidden;
+	}
+}
+
+.sidebar__logo {
+	&__wrapper {
+		display: flex;
+		align-items: center;
+        justify-content: flex-start;
+		width: 100%;
+		// Strange phenomenon: height is not 1:1, therefor min-height is used.
+		min-height: 55px;
+	}
+	&--small {
+		width: 48px;
+		height: 48px;
+		transition: all .3s ease-in-out;
+		padding: 0 4px;
+	}
+	&--large {
+		height: 48px;
+		transition: all .3s ease-in-out;
+		padding: 0 4px;
+	}
+	&--title {
+		color: $font-color--white;
+		font-size: 20px;
+		padding-left: 6px;
+	}
+}
+
+.sidebar__toggle {
+	padding: 0px;
+	justify-content: flex-end;
+    width: 100% !important;
+    background-color: $primary__color;
+		&__row {
+			display: flex;
+			justify-content: center;
+			margin: 0;
+		}
+}
+
+.sidebar__item__label {
+	height: 48px;
+	display: flex;
+	align-items: center;
+	padding-right: 12px;
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+.sidebar__menu {
+	margin: 0;
+	margin-bottom: $sidebar__cell-height;
+}
+
+.sidebar__submenu__item__wrapper--parent-collapsed {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	box-shadow: $sidebar__shadow-tether;
+}
+
+.sidebar__submenu {
+	&--wrapper .sidebar__submenu__item {
+		height: 60px;
+	}
+	padding: 0px;
+	width: 100% !important;
+	position: relative;
+	margin: 0;
+	list-style: none;
+		&__label {
+			display: flex;
+			align-items: center;
+			font-size: 14px;
+			flex: 0 0 168px;
+			text-align: left;
+		}
+}
+
+.sidebar__submenu__item {
+	&__wrapper {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		box-shadow: $sidebar__shadow-tether;
+	}
+	height: 48px !important;
+	width: 100% !important;
+	& i {
+		font-size: 20px;
+	}
+}
+
+.sidebar__cell {
+	display: flex;
+	align-items: center;
+	width: calc(100% - 17px);
+	height: $sidebar__cell-height;
+	text-decoration: none !important;
+	border: none;
+	cursor: pointer;
+	-webkit-transition: height, background-color .3s;
+	-moz-transition: height, background-color .3s ;
+	-ms-transition: height, background-color .3s;
+    transition: height, background-color .3s;
+    color: white;
+		&:hover {
+			-webkit-transition: background-color .3s;
+			-moz-transition: background-color .3s;
+			-ms-transition: background-color .3s;
+            transition: background-color .3s;
+            background-color: darken($primary__color, 5);
+		}
+		&:focus {
+			outline: none;
+		}
+}
+
+.sidebar__icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 60px;
+	width: $sidebar__icon-width;
+	flex: 0 0 56px;
+}

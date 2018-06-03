@@ -1,0 +1,85 @@
+@mixin slot($variable1, $variable2) {
+	grid-row: ($variable1 + 1) / span (($variable2 + 1) - $variable1);
+}
+
+$shadow__level--1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+$shadow__level--2: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+$shadow__level--3: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+$shadow__level--4: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+$shadow__level--5: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+
+@mixin shadow($shadow__level) {
+    box-shadow: $shadow__level;
+}
+
+@mixin transition ($transition-property) {
+	-webkit-transition: $transition-property;
+	-moz-transition: $transition-property;
+	-ms-transition: $transition-property;
+	transition: $transition-property;
+}
+
+%button--default {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 36px;
+	border-radius: 0px;
+	font-size: 16px;
+	border: 0px;
+	cursor: pointer;
+	outline: none;
+	padding: 0 8px 0 8px;
+	margin: 0 8px 0 8px;
+	@include transition(box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s);
+	&:disabled {
+		color: gray;
+		&:hover {
+			background-color: transparent;
+		}
+	}
+}
+
+@mixin button--raised ($width: auto, $background-color: $primary__color, $color: $gm-white) {
+	@extend %button--default;
+	background-color: $background-color;
+	color: $color;
+	width: $width;
+	@include shadow($shadow__level--1);
+	&:hover {
+		background-color: $primary__color--hover;
+		color: $gm-white;
+		transition-delay: 0s;
+		@include shadow($shadow__level--2);
+	}
+   	&--active {
+		@extend %button--default;
+		background-color: #0277BD;
+		color: $font-color--white;
+		@include shadow($shadow__level--1);
+	}
+
+}
+
+@mixin button--flat ($width: auto, $background-color: transparent, $color: $primary__color, $background-color--hover: lightgray) {
+	@extend %button--default;
+	background-color: $background-color;
+	font-weight: 500;
+	color: $color;
+	border: 0px;
+	width: $width;
+	cursor: pointer;
+	&:hover {
+		background-color: $background-color--hover;
+	}
+	&--active {
+		@extend %button--default;
+		font-weight: 500;
+		background-color: $gm-grey--300;
+		color: $primary__color;
+	}
+	&:active {
+		background-color: $gm-grey--200;
+		transition: background-color 0.3s;
+	}
+}

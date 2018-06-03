@@ -1,0 +1,6 @@
+<ul class="list-group" style="display: flex; flex-direction: column;">
+    {{#each model as |reservation|}}
+        <li class="list-group-item">{{reservation.room}}</li>
+        <li class="list-group-item">{{reservation.timebox}}</li>
+    {{/each}}
+</ul>

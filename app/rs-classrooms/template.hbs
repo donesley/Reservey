@@ -1,0 +1,35 @@
+{{rs-header title="Overview"}}
+
+<div class="content">
+	<div class="overview">
+		<div class="overview__list">
+			<div class="overview__header">
+				<div class="overview__header--item">Classroom</div>
+				<div class="overview__header--item">Facilities</div>
+				<div class="overview__header--item">Capacity</div>
+				<div class="overview__header--item">Outlets</div>
+			</div>
+
+			{{#each model as |classroom|}}
+				<div class="overview__list--item">
+						{{#link-to "rs-classrooms.rs-reservation.rs-reservations" classroom class=""}}
+							<div class="overview__list--name">{{classroom.name}}</div>
+							<div class="overview__list--facility">{{classroom.facility}}</div>
+							<div class="overview__list--capacity">{{classroom.capacity}}</div>
+							<div class="overview__list--outlets">{{classroom.outlets}}</div>
+							<span class="pointer glyphicon glyphicon-chevron-right"></span>
+						{{/link-to}}
+					</div>
+			{{/each}}
+
+		</div>
+		<div class="overview__right">
+			<div class="overview__filter">
+				test
+			</div>
+			<div class="overview__reservations">
+				{{outlet}}
+			</div>
+		</div>
+	</div>
+</div>

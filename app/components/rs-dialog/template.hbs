@@ -1,0 +1,20 @@
+{{#if dialog.state}}
+	{{#paper-dialog class="flex-40" onClose=(action "closeDialog") origin=dialogOrigin clickOutsideToClose=true}}
+	{{#paper-toolbar}}
+		{{#paper-toolbar-tools class="dialog__header"}}
+		<h2>{{title}}</h2>
+		<span class="flex"></span>
+		{{#paper-button iconButton=true onClick=(action "closeDialog")}}{{paper-icon icon="close"}}{{/paper-button}}
+		{{/paper-toolbar-tools}}
+	{{/paper-toolbar}}
+
+	<div class="dialog__content">
+		{{yield}}
+	</div>
+
+	{{#paper-dialog-actions class="layout-row"}}
+		<button class="dialog__button--cancel" {{action "closeDialog"}}>Cancel</button>
+		<button class="dialog__button--confirm" {{action confirmDialog}} disabled={{isAddButtonDisabled}}>Add</button>
+	{{/paper-dialog-actions}}
+	{{/paper-dialog}}
+{{/if}}

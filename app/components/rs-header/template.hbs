@@ -1,0 +1,18 @@
+<div class="hr-header">
+    <div class="hr-header__title">{{title}}</div>
+
+    <div class="hr-header__login" onClick={{action "dropdownthis"}}>
+        Welcome name
+    </div>
+     {{#if dropdown}}
+        <div class="hr-header__login--dropdown">
+            {{#if session.isAuthenticated}}
+                <a {{action 'invalidateSession'}}>Logout</a>
+            {{else}}
+                Please Login first
+            {{/if}}
+        </div>
+    {{/if}}
+</div>
+
+{{yield}}

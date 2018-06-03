@@ -1,0 +1,31 @@
+<div class="reservation__header">
+	<div class="reservation__header--item">Attendants</div>
+	<div class="reservation__header--item">Classroom</div>
+	<div class="reservation__header--item">Timebox</div>
+	<div class="reservation__header--icon">{{#paper-button iconButton=true onClick=(action "toggleDialog")}}{{paper-icon icon="add"}}{{/paper-button}}</div>
+</div>
+{{!--TODO Get classroom name from model.name instead of reservation.classroom--}}
+{{#each model.reservations as |reservation|}}
+	<div class="reservation__list--item">
+		{{#link-to "reservation.classroom.reservations" classroom class="list-group-item classroom-link"}}
+			<div class="reservation--item">{{reservation.attendants}}</div>
+			<div class="reservation--item">{{reservation.classroom}}</div>
+			<div class="reservation--item">{{reservation.timebox}}</div>
+			<div class="reservation--icon"><i class="material-icons">delete</i></div>
+		{{/link-to}}
+	</div>
+{{/each}}
+
+{{#if showDialog}}
+	{{input type="text" class="" placeholder="New reservation" value=attendants}}
+	<button class="" {{action "createReservation"}}>Add</button>
+{{/if}}
+{{!--
+{{#rs-dialog
+	title="Add reservation"
+	confirmDialog="createReservation"}}
+		<div class="dialog__content">
+			{{input type="text" class="" placeholder="New reservation" value=title}}
+			<button class="" {{action "createReservation"}}>Add</button>
+		</div>
+{{/rs-dialog}} --}}
