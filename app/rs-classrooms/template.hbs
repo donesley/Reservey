@@ -12,7 +12,7 @@
 
 			{{#each model as |classroom|}}
 				<div class="overview__list--item">
-						{{#link-to "rs-classrooms.rs-reservation.rs-reservations" classroom class=""}}
+						{{#link-to "rs-classrooms.rs-reservation" class=""}}
 							<div class="overview__list--name">{{classroom.name}}</div>
 							<div class="overview__list--facility">{{classroom.facility}}</div>
 							<div class="overview__list--capacity">{{classroom.capacity}}</div>

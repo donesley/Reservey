@@ -1,0 +1,95 @@
+<div class="service">
+    <div class="service__list__wrapper">
+        <div class="service__list">
+            <div class="service__header">
+                <div class="service__header--item">Reporter</div>
+                <div class="service__header--item">Classroom</div>
+                <div class="service__header--item--issue">Issue</div>
+                <div class="service__header--item">Status</div>
+                <div class="service__header--item--placeholder"></div>
+                <div class="classrooms__header--icon">
+                    {{#paper-button iconButton=true onClick=(action "onToggleAdd")}}
+                        {{paper-icon icon="add"}}
+                    {{/paper-button}}
+                </div>
+            </div>
+            {{#each mallfunctions as |issue|}}
+                <div class="service__list--item">
+                    {{#rs-service-input item=issue}}
+                        <div class="service__list--icon service__list--icon--edit">{{#link-to 'rs-service.edit' issue.id}}<i class="material-icons">edit</i>{{/link-to}}</div>
+                        {{!-- <div class="service__list--icon service__list--icon--delete" {{action 'onToggleEdit'}}><i class="material-icons">edit</i></div> --}}
+                        <div class="service__list--icon service__list--icon--delete" {{action 'deleteIssue' issue}}><i class="material-icons">delete</i></div>
+                    {{/rs-service-input}}
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+<div class="user">
+    <div class="user__list__wrapper">
+        <div class="user__list">
+            <div class="user__header">
+                <div class="user__header--item">Username</div>
+                <div class="user__header--item">Displayname</div>
+                <div class="user__header--item">Type</div>
+            </div>
+            {{#each users as |user|}}
+                <div class="user__list--item">
+                    <div class="user__list--username">{{user.userName}}</div>
+                    <div class="user__list--displayname">{{user.displayName}}</div>
+                    <div class="user__list--type">{{user.type}}</div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+{{#if showAddDialog}}
+  {{#paper-dialog class="flex-40" onClose=(action "onToggleAdd") origin=dialogOrigin clickOutsideToClose=true}}
+	{{#paper-toolbar}}
+	  {{#paper-toolbar-tools class="dialog__header"}}
+		<h2>Add classroom</h2>
+		<span class="flex"></span>
+		{{#paper-button iconButton=true onClick=(action "onToggleAdd")}}{{paper-icon icon="close"}}{{/paper-button}}
+	  {{/paper-toolbar-tools}}
+	{{/paper-toolbar}}
+
+	<div class="dialog__content">
+        {{input type="text" class="" placeholder="Reporter" value=reporter}}
+		{{input type="text" class="" placeholder="Classroom" value=classroom}}
+		{{textarea type="string" class="" placeholder="Please describe your issue" value=issue}}
+		{{input type="string" class="" placeholder="Status" value=status}}
+	</div>
+
+	{{#paper-dialog-actions class="layout-row"}}
+		<button class="dialog__button--cancel" {{action "onToggleAdd"}}>Cancel</button>
+		<button class="dialog__button--confirm" {{action "saveIssue"}} disabled={{isAddButtonDisabled}}>Add</button>
+	{{/paper-dialog-actions}}
+  {{/paper-dialog}}
+{{/if}}
+
+
+{{#if showEditDialog}}
+  {{#paper-dialog class="flex-40" onClose=(action "onToggleEdit") origin=dialogOrigin clickOutsideToClose=true}}
+	{{#paper-toolbar}}
+	  {{#paper-toolbar-tools class="dialog__header"}}
+		<h2>Add classroom</h2>
+		<span class="flex"></span>
+		{{#paper-button iconButton=true onClick=(action "onToggleEdit")}}{{paper-icon icon="close"}}{{/paper-button}}
+	  {{/paper-toolbar-tools}}
+	{{/paper-toolbar}}
+
+	<div class="dialog__content">
+        {{input type="text" class="" placeholder="Reporter" value=reporter}}
+		{{input type="text" class="" placeholder="Classroom" value=classroom}}
+		{{textarea type="string" class="" placeholder="Please describe your issue" value=issue}}
+		{{input type="string" class="" placeholder="Status" value=status}}
+	</div>
+
+	{{#paper-dialog-actions class="layout-row"}}
+		<button class="dialog__button--cancel" {{action "onToggleEdit"}}>Cancel</button>
+		<button class="dialog__button--confirm" {{action "saveIssue"}} disabled={{isAddButtonDisabled}}>Add</button>
+	{{/paper-dialog-actions}}
+  {{/paper-dialog}}
+{{/if}}

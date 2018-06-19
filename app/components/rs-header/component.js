@@ -21,6 +21,20 @@ export default Component.extend({
             this.get('session').authenticate('authenticator:oauth2', identification, password).catch((reason) => {
                 this.set('errorMessage', reason.error || reason);
             });
+        },
+        onToggleDialog() {
+            this.toggleProperty('isShowingDialog');
+        },
+        createIssue() {
+            const classroom = this.get('classroom');
+            const issue = this.get('issue');
+
+            const newIssue = this.store.createRecord('mallfunctions', { classroom: classroom, issue: issue });
+            newIssue.save();
+
+            this.set('responseMessage', `We save your issue for classroom: ${this.get('name')} and will get make sure it gets looked into`);
+            this.setProperties({name: '', issue: ''});
+            this.toggleProperty('isShowingDialog');
         }
     }
 });

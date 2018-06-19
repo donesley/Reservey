@@ -1,16 +1,10 @@
-import EmberObject, { computed } from '@ember/object';
+import DS from 'ember-data';
 
-export default EmberObject.extend({
-    name: '',
+export default DS.Model.extend({
+    name: DS.attr('string'),
+    facility: DS.attr('string'),
+    capacity: DS.attr('number'),
+    outlets: DS.attr('number'),
 
-    init: function() {
-        this._super(...arguments);
-        if (!this.get('reservations')) {
-            this.set('reservations', []);
-        }
-    },
-
-    slug: computed('name', function() {
-        return this.get('name').dasherize();
-    })
+    // reservations: DS.hasMany('reservations'),
 });

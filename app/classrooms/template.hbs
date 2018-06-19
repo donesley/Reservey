@@ -2,35 +2,31 @@
 
 <div class="content">
 	<div class="classrooms">
-        <div class="classrooms__list__wrapper">
-            <div class="classrooms__list">
-                <div class="classrooms__header">
-                    <div class="classrooms__header--item">Classroom</div>
-                    <div class="classrooms__header--item">Facilities</div>
-                    <div class="classrooms__header--item">Capacity</div>
-                    <div class="classrooms__header--item">Outlets</div>
-                    <div class="classrooms__header--icon">{{#paper-button iconButton=true onClick=(action "openDialog")}}{{paper-icon icon="add"}}{{/paper-button}}</div>
-                </div>
-
-                {{#each model as |classroom|}}
-                    <div class="classrooms__list--item">
-                        {{#link-to "classrooms.classroom.reservations" classroom class="list-group-item classroom-link"}}
-                            <div class="classrooms__list--name">{{classroom.name}}</div>
-                            <div class="classrooms__list--facility">{{classroom.facility}}</div>
-                            <div class="classrooms__list--capacity">{{classroom.capacity}}</div>
-                            <div class="classrooms__list--outlets">{{classroom.outlets}}</div>
-                            <div class="classrooms__list--icon"><i class="material-icons">delete</i></div>
-                        {{/link-to}}
-                    </div>
-                {{/each}}
-
-            </div>
-        </div>
+		<div class="classrooms__list__wrapper">
+			<div class="classrooms__list">
+				<div class="classrooms__header">
+					<div class="classrooms__header--item">Classroom</div>
+					<div class="classrooms__header--item">Facilities</div>
+					<div class="classrooms__header--item">Capacity</div>
+					<div class="classrooms__header--item">Outlets</div>
+				</div>
+				{{#each model as |classroom|}}
+					{{#link-to "classrooms.reservations" class=""}}
+						<div class="classrooms__list--item">
+							<div class="classrooms__list--name">{{classroom.name}}</div>
+							<div class="classrooms__list--facility">{{classroom.facility}}</div>
+							<div class="classrooms__list--capacity">{{classroom.capacity}}</div>
+							<div class="classrooms__list--outlets">{{classroom.outlets}}</div>
+						</div>
+					{{/link-to}}
+				{{/each}}
+			</div>
+		</div>
 		<div class="classrooms__right">
 			<div class="classrooms__filter">
 				<div class="list-group-item">
-                    filter
-                </div>
+					filter
+				</div>
 			</div>
 			<div class="classrooms__reservations">
 				{{outlet}}
@@ -38,36 +34,3 @@
 		</div>
 	</div>
 </div>
-
-{{!-- {{#rs-dialog
-	title="Add classroom"
-	confirmDialog="createClassroom"}}
-        {{input type="text" class="" placeholder="Classroom" value=name}}
-        {{input type="text" class="" placeholder="Facilities" value=facility}}
-        {{input type="text" class="" placeholder="Capacity" value=capacity}}
-        {{input type="text" class="" placeholder="Outlets" value=outlets}}
-{{/rs-dialog}} --}}
-
-{{#if dialog.state}}
-  {{#paper-dialog class="flex-40" onClose=(action "closeDialog") origin=dialogOrigin clickOutsideToClose=true}}
-    {{#paper-toolbar}}
-      {{#paper-toolbar-tools class="dialog__header"}}
-        <h2>Add classroom</h2>
-        <span class="flex"></span>
-        {{#paper-button iconButton=true onClick=(action "closeDialog")}}{{paper-icon icon="close"}}{{/paper-button}}
-      {{/paper-toolbar-tools}}
-    {{/paper-toolbar}}
-
-    <div class="dialog__content">
-        {{input type="text" class="" placeholder="Classroom" value=name}}
-        {{input type="text" class="" placeholder="Facilities" value=facility}}
-        {{input type="text" class="" placeholder="Capacity" value=capacity}}
-        {{input type="text" class="" placeholder="Outlets" value=outlets}}
-    </div>
-
-    {{#paper-dialog-actions class="layout-row"}}
-        <button class="dialog__button--cancel" {{action "closeDialog"}}>Cancel</button>
-        <button class="dialog__button--confirm" {{action "createClassroom"}} disabled={{isAddButtonDisabled}}>Add</button>
-    {{/paper-dialog-actions}}
-  {{/paper-dialog}}
-{{/if}}

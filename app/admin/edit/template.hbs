@@ -1,0 +1,12 @@
+<div class="content">
+    <div class="admin__edit-mode">
+        <div class="admin__edit-mode--card">
+            <h3>Edit classrooms</h3>
+            {{input type="text" value=model.name placeholder="Classroom"}}
+            {{input type="text" value=model.facility placeholder="Facilities"}}
+            {{input type="number" value=model.capacity placeholder="Capacity of the room"}}
+            {{input type="number" value=model.outlets placeholder="Amount of outlets in the room"}}
+            <button type="submit" class="form__button" {{action 'saveClassroom' model}}>Save changes</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="service__list--item">
+    <div class="service__list--name">{{issue.reporter}}</div>
+    <div class="service__list--classroom">{{issue.classroom}}</div>
+    <div class="service__list--issue">{{issue.issue}}</div>
+    <div class="service__list--status">{{issue.status}}</div>
+    <div class="service__list--icon service__list--icon--edit">{{#link-to 'rs-service.edit' issue.id}}<i class="material-icons">edit</i>{{/link-to}}</div>
+    <div class="service__list--icon service__list--icon--delete" {{action 'deleteIssue' issue}}><i class="material-icons">delete</i></div>
+</div>

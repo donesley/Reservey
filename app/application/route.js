@@ -8,25 +8,29 @@ var SidebarItem = Object.extend({
 });
 
 export default Route.extend({
+    beforeModel: function() {
+        // this.transitionTo('classrooms');
+    },
+
     model: function() {
         var classrooms = SidebarItem.create({
-            label: 'Overview',
+            label: 'Agenda',
             to: 'rs-agenda',
             icon: 'dashboard'
         });
         var agenda = SidebarItem.create({
-            label: 'Agenda',
+            label: 'Overview',
             to: 'classrooms',
             icon: 'view_agenda'
         });
         var reservations = SidebarItem.create({
-            label: 'Agenda',
-            to: 'classrooms',
-            icon: 'view_agenda'
+            label: 'Service Panel',
+            to: 'rs-service',
+            icon: 'record_voice_over'
         });
         var reservationsOverview = SidebarItem.create({
-            label: 'Reservations',
-            to: 'rs-reservations-overview',
+            label: 'Admin Panel',
+            to: 'admin',
             icon: 'fingerprint'
         });
 

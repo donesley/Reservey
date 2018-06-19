@@ -1,15 +1,16 @@
 import Component from '@ember/component';
-import { inject as service } from '@ember/service';
+import layout from './template';
+import { get } from '@ember/object';
 
 export default Component.extend({
-    dialog: service(),
+	layout,
 
-    actions: {
-        openDialog() {
-            this.get('dialog').open();
-        },
-        closeDialog() {
-            this.get('dialog').close();
-        }
-    }
+	actions: {
+		onConfirm() {
+			get(this, 'onConfirm')();
+		},
+		onToggleDialog() {
+			this.toggleProperty('isShowingDialog');
+		}
+	}
 });

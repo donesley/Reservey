@@ -15,7 +15,14 @@ export default Route.extend({
             var attendants = controller.get('attendants');
             var reservation = Reservation.create({ attendants: attendants, classroom: classroom });
             classroom.get('reservations').pushObject(reservation);
-            controller.set('title', '');
+            controller.set('attendants', '');
+        },
+        didTransition: function() {
+            var classroom = this.modelFor('classrooms.classroom');
+            document.title = `Reservey - Classroom ${classroom.get('name')}`;
+        },
+        closeDialog() {
+
         }
     }
 });

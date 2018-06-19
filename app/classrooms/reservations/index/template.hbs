@@ -1,0 +1,19 @@
+<div class="reservations">
+    <div class="reservations__list__wrapper">
+        <div class="reservations__list">
+            <div class="reservations__header">
+                <div class="reservations__header--item">Attendants</div>
+                <div class="reservations__header--item">Timebox</div>
+                <div class="reservations__header--item">Classroom</div>
+                {{!-- <div class="reservations__header--icon">{{#paper-button iconButton=true onClick=(action "onToggleDialog")}}{{paper-icon icon="add"}}{{/paper-button}}</div> --}}
+            </div>
+            {{#each model as |reservation|}}
+                <div class="reservations__list--item">
+                    <div class="reservations__list--attendants">{{reservation.attendants}}</div>
+                    <div class="reservations__list--timebox">{{reservation.timebox}}</div>
+                    <div class="reservations__list--classroom">{{reservation.classroom}}</div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

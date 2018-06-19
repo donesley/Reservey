@@ -1,0 +1,12 @@
+{{title}}
+
+{{input type="text" value=item.reporter class="" placeholder="Reporter"}}
+{{input type="text" value=item.classroom class="" placeholder="Classroom"}}
+{{textarea type="text" value=item.issue class="" placeholder="Please discribe the mallfunction"}}
+{{input type="text" value=item.status class="" placeholder="Status"}}
+{{!-- <select onchange={{action "changeStatus" value="item.status"}}>
+  {{#each statuses as |statuses|}}
+    <option value={{statuses}} selected={{eq type statuses}}>{{statuses}}</option>
+  {{/each}}
+</select> --}}
+<button type="submit" class="form__button" {{action 'click' item}} disabled={{unless item.isValid true}}>{{label}}</button>

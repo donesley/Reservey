@@ -1,20 +1,43 @@
-{{#if dialog.state}}
-	{{#paper-dialog class="flex-40" onClose=(action "closeDialog") origin=dialogOrigin clickOutsideToClose=true}}
+{{!-- {{#paper-dialog class="flex-40" onClose=(action "toggleDialog") origin=dialogOrigin clickOutsideToClose=true}}
 	{{#paper-toolbar}}
 		{{#paper-toolbar-tools class="dialog__header"}}
-		<h2>{{title}}</h2>
+		<h2>Add classroom</h2>
 		<span class="flex"></span>
-		{{#paper-button iconButton=true onClick=(action "closeDialog")}}{{paper-icon icon="close"}}{{/paper-button}}
+		{{#paper-button iconButton=true onClick=(action "toggleDialog")}}{{paper-icon icon="close"}}{{/paper-button}}
 		{{/paper-toolbar-tools}}
 	{{/paper-toolbar}}
 
 	<div class="dialog__content">
-		{{yield}}
+		{{input type="text" class="" placeholder="Classroom" value=name}}
+		{{input type="text" class="" placeholder="Facilities" value=facility}}
+		{{input type="text" class="" placeholder="Capacity" value=capacity}}
+		{{input type="text" class="" placeholder="Outlets" value=outlets}}
 	</div>
 
 	{{#paper-dialog-actions class="layout-row"}}
-		<button class="dialog__button--cancel" {{action "closeDialog"}}>Cancel</button>
-		<button class="dialog__button--confirm" {{action confirmDialog}} disabled={{isAddButtonDisabled}}>Add</button>
+		<button class="dialog__button--cancel" {{action "toggleDialog"}}>Cancel</button>
+		<button class="dialog__button--confirm" {{action "createClassroom"}} disabled={{isAddButtonDisabled}}>Add</button>
 	{{/paper-dialog-actions}}
+	geenidee
+{{/paper-dialog}} --}}
+
+
+{{#if isShowingDialog}}
+	{{#paper-dialog class="flex-25" clickOutsideToClose=true parent=".content" onClose=(action onToggleDialog)}}
+		{{#paper-toolbar}}
+			{{#paper-toolbar-tools}}
+			<h2 data-test-dialog-title>{{title}}</h2>
+			<span class="flex"></span>
+			{{#paper-button iconButton=true onClick=(action onToggleDialog)}}{{paper-icon icon="close"}}{{/paper-button}}
+			{{/paper-toolbar-tools}}
+		{{/paper-toolbar}}
+		{{#paper-dialog-content}}
+			{{yield}}
+		{{/paper-dialog-content}}
+		{{#paper-dialog-actions class="layout-row"}}
+			<span class="flex"></span>
+			{{#paper-button onClick=(action "onToggleDialog")}}{{t "maple_shared_components.dialog.cancel"}}{{/paper-button}}
+			{{#paper-button onClick=(action createClassroom) primary=true}}{{t "maple_shared_components.dialog.confirm"}}{{/paper-button}}
+		{{/paper-dialog-actions}}
 	{{/paper-dialog}}
 {{/if}}
